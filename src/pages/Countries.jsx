@@ -29,11 +29,11 @@ const Countries = () => {
   //  Filter
 
   const searchCountry = async (term) => {
-    if (term.length < 3 || term === "") return;
+    if (term.length < 1 || term === "") return;
     const res = await fetch(`https://restcountries.com/v3.1/name/${term}`);
     const data = await res.json();
     console.log(data);
-    setCountries(data);
+    await setCountries(data);
   };
 
   // TABLE
@@ -68,7 +68,9 @@ const Countries = () => {
       country.population,
       <div>
         <Link to={{ pathname: `details/${name}`, state: country }} key={index}>
-          <button className="font-bold  text-gray-900 ">Más Detalles</button>
+          <button className="font-bold  text-gray-500 transition  ease-out duration-300 ">
+            More info
+          </button>
         </Link>
       </div>
     );
@@ -76,7 +78,7 @@ const Countries = () => {
   console.log("fila", rows);
 
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(20);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -91,25 +93,32 @@ const Countries = () => {
     <>
       <div>
         <div className="m-4">
-          <label className="m-4">Buscar país</label>
+          <label className="m-4 font-semibold text-xl">Do you research </label>
           <input
             type="text"
             placeholder="Search for a country..."
-            className="pl-10 p-2 shadow-md rounded-md w-1/3 dark:bg-gray-700"
+            className="pl-10 p-2 shadow-md rounded-md w-1/3 dark:bg-gray-700 outline-none focus:outline-indigo-500"
             onChange={(term) => searchCountry(term.target.value)}
           />
         </div>
 
-        <Paper sx={{ width: "100%", overflow: "hidden" }}>
+        <Paper
+          sx={{ width: "100%", overflow: "hidden" }}
+          className="mb-10 text-center"
+        >
           <TableContainer sx={{ maxHeight: 1300 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
-                <TableRow>
+                <TableRow className="text-2xl font-medium">
                   {columns.map((column) => (
                     <TableCell
                       key={column.id}
                       align={column.align}
-                      style={{ minWidth: column.minWidth }}
+                      style={{
+                        minWidth: column.minWidth,
+                        fontSize: 20,
+                        fontWeight: 500,
+                      }}
                     >
                       {column.label}
                     </TableCell>

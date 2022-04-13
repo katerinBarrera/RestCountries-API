@@ -28,30 +28,32 @@ function Details(state) {
   }, []);
 
   return (
-    <div>
+    <div className="">
       {countries.map((country) => {
         return (
-          <div className="bg-gray-100 dark:bg-gray-800 dark:text-white">
-            <div className="w-screen shadow-md py-6 px-3 bg-white dark:bg-gray-700 dark:text-white mb-16">
+          <div className="bg-[#A9D2FF] w-screen h-screen first-letter:dark:bg-gray-800 dark:text-white">
+            <div className="w-screen shadow-md py-6 px-3 bg-white dark:bg-gray-700 dark:text-white mb-10">
               <div className="flex container mx-auto">
                 <h1 className="font-bold text-xl">
-                  {" "}
                   More details of {country.name.common}
                 </h1>
               </div>
             </div>
-            <div className="container mx-auto mb-16">
+            <div className="container flex mx-auto mb-10 ">
               <button
-                className="px-8 py-2 bg-white text-gray-600 shadow-md dark:bg-gray-700 dark:text-white rounded-lg"
+                className="px-8 py-2 bg-white text-gray-600 shadow-md dark:bg-gray-700 dark:text-white rounded-lg ease-out duration-300 "
                 onClick={() => navigate("/")}
               >
                 <i className="fa fa-arrow-left"></i> Back
               </button>
             </div>
-            <div className="container flex mx-auto p-8 pl-0 pr-0">
+            <div
+              className="container flex mx-auto p-8 pl-0 pr-0 
+            w-screen shadow-md bg-white dark:bg-gray-700 dark:text-white mb-10"
+            >
               <img
                 src={country.flags.png}
-                className="w-1/2 pr-8"
+                className="w-1/2 pr-8  ml-10"
                 alt={country.name.common}
               />
               <div className="p-8 pl-8">
