@@ -29,13 +29,6 @@ const Countries = () => {
 
   //  Filter
 
-  //   const searchCountry = async (term) => {
-  //     if (term.length < 2 || term === "") return;
-  //     const res = await fetch(`https://restcountries.com/v3.1/name/${term}`);
-  //     const data = await res.json();
-  //     await setCountries(data);
-  //   };
-
   const searchCountry = () => {
     const term = countriesInputRef.current.value;
 
@@ -184,151 +177,9 @@ const Countries = () => {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-
-        {/* <table
-          className="table-auto border-4 mt-4 border-double"
-          id="datatable"
-        >
-          <thead>
-            <tr>
-              <th>País</th>
-              <th>Capital</th>
-              <th>Población</th>
-              <th>Opciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {countries.map((country, index) => {
-              let name = country.name.common;
-              return (
-                <tr key={index} className="m-2">
-                  <td className="p-2">{country.name.common}</td>
-                  <td className="p-2">{country.capital}</td>
-                  <td className="p-2">{country.population}</td>
-                  <td className="p-2">
-                    <Link
-                      to={{ pathname: `details/${name}`, state: country }}
-                      key={index}
-                    >
-                      <button className="font-bold  text-gray-900 ">
-                        Más Detalles
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table> */}
       </div>
     </>
   );
 };
 
 export default Countries;
-
-// const Countries = () => {
-//   const [open, setOpen] = useState(false);
-//   const [countries, setCountries] = useState([]);
-
-//   const fetchCountryData = async () => {
-//     const response = await fetch(url);
-//     const countries = await response.json();
-//     setCountries(countries);
-//     console.log(countries);
-//   };
-//   useEffect(() => {
-//     fetchCountryData();
-//   }, []);
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
-//   const CountryDialog = ({ flag, name, key }) => {
-//     return (
-//       <div>
-//         <Dialog onClose={handleClose} open={open} key={key}>
-//           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-//             Modal title
-//           </DialogTitle>
-//           <DialogContent dividers>
-//             <img src={flag} alt={name} />
-//             <h1>{name}</h1>
-//           </DialogContent>
-//           {/* <DialogActions>
-//             <Button autoFocus onClick={handleClose}>
-//               Save changes
-//             </Button>
-//           </DialogActions> */}
-//         </Dialog>
-//       </div>
-//     );
-//   };
-
-//   let CountryRow;
-//   return (
-//     <>
-//       {/* {countries.map((country) => {
-//         let name = country.name.common;
-//         let flag = country.flags.png;
-//         const { ccn3, population, capital, region, area } = country;
-//         // console.log(country.name.common);
-
-//         return (
-//           <div>
-//             {" "}
-//             <article key={ccn3}>
-//               <div>
-//                 <img src={flag} alt={name} />
-//                 <h1>{name}</h1>
-//                 <h1>{population}</h1>
-//                 <h1>{capital}</h1>
-//                 <h1>{region}</h1>
-//                 <h1>{area}</h1>
-//               </div>
-//             </article>
-//           </div>
-//         );
-//       })} */}
-//       <table class="table-auto" id="datatable">
-//         <thead>
-//           <tr>
-//             <th>País</th>
-//             <th>Capital</th>
-//             <th>Población</th>
-//             <th>Opciones</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {countries.map((country) => {
-//             CountryRow = countries.indexOf(country);
-//             let name = country.name.common;
-//             const flag = country.flags.png;
-//             // const id = nanoid();
-//             const { ccn3, population, capital, region, area } = country;
-//             // console.log(country.name.common);
-//             console.log("prueba", CountryRow);
-//             return (
-//               <tr key={ccn3}>
-//                 <td>{name}</td>
-//                 <td>{capital}</td>
-//                 <td>{population}</td>
-//                 <td>
-//                   <button
-//                     className="font-bold  text-gray-900 "
-//                     onClick={handleClickOpen}
-//                   >
-//                     Más Detalles
-//                   </button>
-//                 </td>
-//               </tr>
-//             );
-//           })}
-//           <CountryDialog />
-//         </tbody>
-//       </table>
-//     </>
-//   );
-// };

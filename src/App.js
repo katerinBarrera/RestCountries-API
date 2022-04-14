@@ -8,17 +8,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<PrivateLayout />}> */}
           <Route path="" element={<Index />} />
           <Route path="details/:name" element={<Details />} />
-          {/* <Route path="/usuarios/editar/:_id" element={<EditarUsuario />} /> */}
-          {/* <Route path="/proyectos" element={<IndexProyectos />} /> */}
-          {/* <Route path="/proyectos/nuevo" element={<NuevoProyecto />} /> */}
-          {/* </Route> */}
-          {/* <Route path="/auth" element={<AuthLayout />}>
-            <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
-          </Route> */}
         </Routes>
       </BrowserRouter>
     </div>
