@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,6 +13,7 @@ const url = "https://restcountries.com/v3.1/all";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
+  const countriesInputRef = useRef();
 
   //   Data
   const fetchCountryData = async () => {
@@ -28,12 +29,32 @@ const Countries = () => {
 
   //  Filter
 
-  const searchCountry = async (term) => {
-    if (term.length < 4 || term === "") return;
-    const res = await fetch(`https://restcountries.com/v3.1/name/${term}`);
-    const data = await res.json();
-    console.log(data);
-    await setCountries(data);
+  //   const searchCountry = async (term) => {
+  //     if (term.length < 2 || term === "") return;
+  //     const res = await fetch(`https://restcountries.com/v3.1/name/${term}`);
+  //     const data = await res.json();
+  //     await setCountries(data);
+  //   };
+
+  const searchCountry = () => {
+    const term = countriesInputRef.current.value;
+
+    if (term.trim()) {
+      const fetchSearch = async () => {
+        const res = await fetch(`https://restcountries.com/v3.1/name/${term}`);
+        const data = await res.json();
+
+        setCountries(data);
+      };
+
+      try {
+        fetchSearch();
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      fetchCountryData();
+    }
   };
 
   // TABLE
@@ -99,6 +120,7 @@ const Countries = () => {
             placeholder="Search for a country..."
             className="pl-10 p-2 shadow-md rounded-md w-1/3 dark:bg-gray-700 outline-none focus:outline-indigo-500"
             onChange={(term) => searchCountry(term.target.value)}
+            ref={countriesInputRef}
           />
         </div>
 
