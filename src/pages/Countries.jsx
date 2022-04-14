@@ -29,7 +29,7 @@ const Countries = () => {
   //  Filter
 
   const searchCountry = async (term) => {
-    if (term.length < 1 || term === "") return;
+    if (term.length < 4 || term === "") return;
     const res = await fetch(`https://restcountries.com/v3.1/name/${term}`);
     const data = await res.json();
     console.log(data);
